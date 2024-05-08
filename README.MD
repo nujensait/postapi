@@ -19,8 +19,7 @@ npm install express sqlite3 bcryptjs jsonwebtoken
 npm run dev
 
 # run migrations
-cd database 
-node .\database.js
+node .\db\database.js
 ```
 
 ## Test

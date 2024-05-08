@@ -7,7 +7,8 @@ const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
 
 // Создание нового поста
-router.post('/', authMiddleware, (req, res) => {
+//router.post('/', authMiddleware, (req, res) => {
+router.post('/', (req, res) => {
     try {
         const { title, description, author } = req.body;
         const post = new Post(title, description, author); // Использование 'new' для создания экземпляра
