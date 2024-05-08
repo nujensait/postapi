@@ -23,7 +23,10 @@ node .\db\database.js
 ```
 
 ## Test
-Run postman queries:
+
+Load (import) data from file: postman.json 
+
+Or run separate postman queries:
 ```
 # auth
 URL: http://localhost:3000/auth/login
@@ -40,7 +43,7 @@ URL: http://localhost:3000/posts
 Method: POST
 Headers:
   Content-Type: application/json
-  Authorization: Bearer [Token]  // Замените [Token] на токен, полученный при аутентификации
+  Authorization: Bearer [Token]  // Replace [Token] with the token received during authentication
 Body (raw JSON):
 {
   "title": "New Post Title",
@@ -53,7 +56,7 @@ Method: GET
 Headers: None
 
 # update post
-URL: http://localhost:3000/posts/1  // Замените '1' на ID поста, который вы хотите обновить
+URL: http://localhost:3000/posts/1  // Replace '1' with the ID of the post you want to update
 Method: PUT
 Headers:
   Content-Type: application/json
@@ -65,7 +68,7 @@ Body (raw JSON):
 }
 
 # delete post
-URL: http://localhost:3000/posts/1  // Замените '1' на ID поста, который вы хотите удалить
+URL: http://localhost:3000/posts/1  // Replace '1' with the ID of the post you want to delete
 Method: DELETE
 Headers:
   Authorization: Bearer [Token]

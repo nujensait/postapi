@@ -11,7 +11,7 @@ const authMiddleware = (req, res, next) => {
         return res.sendStatus(401); // Если токен отсутствует, отправляем статус 401 (Неавторизован)
     }
 
-    jwt.verify(token, 'your_secret_key', (err, decoded) => {
+    jwt.verify(token, 'secret_key', (err, decoded) => {
         if (err) {
             return res.sendStatus(403); // Отправляем статус 403 (Запрещено), если токен неверен
         }

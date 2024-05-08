@@ -23,7 +23,11 @@ node .\db\database.js
 ```
 
 ## Проверка
-Run postman queries:
+
+Загрузить (импортировать) данные из файла: postman.json
+
+Или запустите отдельные запросы Postman:
+
 ```
 # auth
 URL: http://localhost:3000/auth/login

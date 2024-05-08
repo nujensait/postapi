@@ -1,12 +1,21 @@
 const db = require('../db/database');
 
 class Post {
+
+    /**
+     * @param title
+     * @param description
+     * @param author
+     */
     constructor(title, description, author) {
         this.title = title;
         this.description = description;
         this.author = author;
     }
 
+    /**
+     * @param callback
+     */
     save(callback) {
         const sql = `INSERT INTO posts (title, description, author)
                      VALUES (?, ?, ?)`;
@@ -16,6 +25,9 @@ class Post {
         });
     }
 
+    /**
+     * @param callback
+     */
     static findAll(callback) {
         const sql = `SELECT *
                      FROM posts`;
@@ -25,7 +37,10 @@ class Post {
         });
     }
 
-    // Дополнительные методы для обновления и удаления постов можно добавить аналогично
+    /**
+     * @param id
+     * @param callback
+     */
     static deleteById(id, callback) {
         const sql = 'DELETE FROM posts WHERE id = ?';
         db.run(sql, [id], function (err) {
@@ -37,6 +52,12 @@ class Post {
         });
     }
 
+    /**
+     * @param id
+     * @param title
+     * @param description
+     * @param callback
+     */
     static updateById(id, title, description, callback) {
         const sql = 'UPDATE posts SET title = ?, description = ? WHERE id = ?';
         db.run(sql, [title, description, id], function (err) {
