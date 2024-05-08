@@ -1,3 +1,5 @@
+( [README НА РУССКОМ ЯЗЫКЕ](README.RU.MD) )
+
 ## Task
 Implement a solution to this problem in Nodejs.
 It is necessary to implement a CRUD API so that users can manipulate posts.
@@ -24,7 +26,7 @@ node .\db\database.js
 
 ## Test
 
-Load (import) data from file: postman.json 
+Load (import) data from file: [postman.json](postman.json) 
 
 Or run separate postman queries:
 ```
@@ -73,3 +75,7 @@ Method: DELETE
 Headers:
   Authorization: Bearer [Token]
 ```
+
+## Todo
+- use authMiddleware on posts CRUD operations (now auth is skipped here)
+- fix error on registration/auth - not working now
