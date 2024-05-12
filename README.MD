@@ -1,5 +1,12 @@
 ( [README НА РУССКОМ ЯЗЫКЕ](README.RU.MD) )
 
+## What is this?
+Problem with hackathon "Express CRUD", dated 05/08/2024
+
+As part of the hackathon, participants
+implement CRUD API, advanced users
+manipulate posts
+
 ## Task
 Implement a solution to this problem in Nodejs.
 It is necessary to implement a CRUD API so that users can manipulate posts.
@@ -11,6 +18,38 @@ An API implementation in Nodejs is required, which allows:
 - View messages to an unregistered user.
 - Delete and change posts for a user with available rights.
 - Delete or change posts for the user who is the author of the post.
+
+### Additional Terms
+Participants who have fulfilled the basic conditions
+it is proposed to implement additional features,
+bringing bonus points:
+- Ability to like posts
+- Ability to ban users if available
+  certain rights
+- Ability to leave comments
+  Note:
+- Additional conditions are optional;
+- Any order of execution is allowed
+  additional conditions;
+- Compliance with additional conditions is not
+  is counted without completing all points of the main
+  conditions.
+
+### Result
+Need to represent a collection in Postman with
+requests that implement the functionality described in
+task.
+
+You also need to post the project code in
+public repository
+
+### Result evaluation (main criteria)
+- Completeness of the solution
+- Quality of code organization
+- Correctness of using certain approaches
+  for API organization
+
+----
 
 ## Setup
 ```
