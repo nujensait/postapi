@@ -1,110 +1,117 @@
-( [README НА РУССКОМ ЯЗЫКЕ](README.RU.MD) )
 
-## What is this?
-Problem with hackathon "Express CRUD", dated 05/08/2024
+( [README НА АНГЛИЙСКОМ](README.ENG.MD) )
+( [ТЕСТЫ](tests/README.md) )
 
-As part of the hackathon, participants
-implement CRUD API, advanced users
-manipulate posts
+---
 
-## Task
-Implement a solution to this problem in Nodejs.
-It is necessary to implement a CRUD API so that users can manipulate posts.
+## Что это?
+Задача с хакатон "Express CRUD", за 08.05.2024
 
-An API implementation in Nodejs is required, which allows:
-- Register and authenticate the user
-- Regulate user rights (range of possibilities when manipulating posts)
-- Create new posts with descriptions for the registered user.
-- View messages to an unregistered user.
-- Delete and change posts for a user with available rights.
-- Delete or change posts for the user who is the author of the post.
+В рамках хакатона участникам предлагается
+реализовать CRUD API, позволяющее пользователям
+манипулировать постами
 
-### Additional Terms
-Participants who have fulfilled the basic conditions
-it is proposed to implement additional features,
-bringing bonus points:
-- Ability to like posts
-- Ability to ban users if available
-  certain rights
-- Ability to leave comments
-  Note:
-- Additional conditions are optional;
-- Any order of execution is allowed
-  additional conditions;
-- Compliance with additional conditions is not
-  is counted without completing all points of the main
-  conditions.
+## Задача
+Реализовать решение следующей задачи на Nodejs.
 
-### Result
-Need to represent a collection in Postman with
-requests that implement the functionality described in
-task.
+Нужно реализовать CRUD API, позволяющее пользователям манипулировать постами.
 
-You also need to post the project code in
-public repository
+Требуется реализация API на Nodejs, которое позволяет:
+- Зарегистрировать и аутентифицировать пользователя
+- Регулировать права пользователя (спектр возможностей при манипуляции с постами)
+- Создавать зарегистрированному пользователю новые посты с описанием
+- Просматривать посты незарегистрированному пользователю
+- Удалять и изменять посты пользователю, обладающему достаточными правами
+- Удалять или изменять посты пользователю, являющимся автором поста
 
-### Result evaluation (main criteria)
-- Completeness of the solution
-- Quality of code organization
-- Correctness of using certain approaches
-  for API organization
+### Дополнительные условия
+Выполнившим основные условия участникам
+предлагается реализовать дополнительные возможности,
+приносящих бонусные очки:
+- Возможность лайкать посты
+- Возможность банить пользователей при наличии
+определённых прав
+- Возможность оставлять комментарии
+Обратите внимание:
+- Дополнительные условия являются опциональными;
+- Допускается произвольный порядок выполнения
+дополнительных условий;
+- Выполнение дополнительных условий не
+засчитывается без выполнения всех пунктов основного
+условия.
+
+### Результат
+Необходимо представить коллекцию в Postman с
+запросами, реализующими функционал, описанный в
+задании. 
+
+Также необходимо выложить код проекта в
+публичный репозиторий
+
+### Оценка результата (основные критерии)
+- Полнота решения
+- Качество организации кода
+- Корректность использования тех или иных подходов
+для организации API
 
 ----
 
-## Setup
+## Установка
 
-### Option 1: Install using script (recommended)
+### Вариант 1: Установка через скрипт (рекомендуется)
 ```bash
-# For Windows
-install-dependencies.bat
+# Для Windows
+scripts\install-dependencies.bat
 
-# For Linux/Mac
-chmod +x install-dependencies.sh
-./install-dependencies.sh
+# Для Linux/Mac
+chmod +x scripts/install-dependencies.sh
+./scripts/install-dependencies.sh
 ```
 
-### Option 2: Install manually
+### Вариант 2: Установка вручную
 ```bash
-# install all dependencies from package.json
+# установить все зависимости из package.json
 npm install
 
-# or install manually (see dependencies.txt for versions)
+# или установить вручную (версии см. в dependencies.txt)
 npm install express sqlite3 bcryptjs jsonwebtoken
 npm install --save-dev jest supertest nodemon
 ```
 
-All required dependencies are listed in [dependencies.txt](dependencies.txt)
+Все необходимые зависимости перечислены в файле [dependencies.txt](dependencies.txt)
 
-### Run application
+### Запуск приложения
 ```bash
 # run app
 npm run dev
 
 # run migrations
 node .\db\database.js
+
 ```
 
-## Automated Tests
+## Автоматизированные тесты
 
-Run automated API tests:
+Запуск автоматизированных тестов API:
 ```bash
-# run all tests
+# запустить все тесты
 npm test
 
-# run tests in watch mode
+# запустить тесты в режиме наблюдения
 npm run test:watch
 
-# run tests with coverage report
+# запустить тесты с отчетом о покрытии кода
 npm test -- --coverage
 ```
 
-See [tests/README.md](tests/README.md) for more details about the test suite.
+Подробнее о тестах см. [tests/README.md](tests/README.md).
 
-## Manual Test
+## Ручная проверка
 
-Load (import) data from file: [postman.json](postman.json) 
+Загрузить (импортировать) данные из файла: [postman.json](postman.json)
 
-Or run separate postman queries:
+Или запустите отдельные запросы Postman:
+
 ```
 # auth
 URL: http://localhost:3005/auth/login
@@ -121,7 +128,7 @@ URL: http://localhost:3005/posts
 Method: POST
 Headers:
   Content-Type: application/json
-  Authorization: Bearer [Token]  // Replace [Token] with the token received during authentication
+  Authorization: Bearer [Token]  // Замените [Token] на токен, полученный при аутентификации
 Body (raw JSON):
 {
   "title": "New Post Title",
@@ -134,7 +141,7 @@ Method: GET
 Headers: None
 
 # update post
-URL: http://localhost:3005/posts/1  // Replace '1' with the ID of the post you want to update
+URL: http://localhost:3005/posts/1  // Замените '1' на ID поста, который вы хотите обновить
 Method: PUT
 Headers:
   Content-Type: application/json
@@ -146,12 +153,12 @@ Body (raw JSON):
 }
 
 # delete post
-URL: http://localhost:3005/posts/1  // Replace '1' with the ID of the post you want to delete
+URL: http://localhost:3005/posts/1  // Замените '1' на ID поста, который вы хотите удалить
 Method: DELETE
 Headers:
   Authorization: Bearer [Token]
 ```
 
-## Todo
-- use authMiddleware on posts CRUD operations (now auth is skipped here)
-- fix error on registration/auth - not working now
+## Нужны доработки 
+- использовать authMiddleware для операций CRUD сообщений (теперь аутентификация здесь пропускается)
+- исправлена ошибка при регистрации/авторизации (сейчас не работает)
