@@ -70,7 +70,7 @@ Load (import) data from file: [postman.json](postman.json)
 Or run separate postman queries:
 ```
 # auth
-URL: http://localhost:3000/auth/login
+URL: http://localhost:3005/auth/login
 Method: POST
 Headers: Content-Type: application/json
 Body (raw JSON):
@@ -80,7 +80,7 @@ Body (raw JSON):
 }
 
 # create post
-URL: http://localhost:3000/posts
+URL: http://localhost:3005/posts
 Method: POST
 Headers:
   Content-Type: application/json
@@ -92,12 +92,12 @@ Body (raw JSON):
 }
 
 # get posts
-URL: http://localhost:3000/posts
+URL: http://localhost:3005/posts
 Method: GET
 Headers: None
 
 # update post
-URL: http://localhost:3000/posts/1  // Replace '1' with the ID of the post you want to update
+URL: http://localhost:3005/posts/1  // Replace '1' with the ID of the post you want to update
 Method: PUT
 Headers:
   Content-Type: application/json
@@ -109,7 +109,7 @@ Body (raw JSON):
 }
 
 # delete post
-URL: http://localhost:3000/posts/1  // Replace '1' with the ID of the post you want to delete
+URL: http://localhost:3005/posts/1  // Replace '1' with the ID of the post you want to delete
 Method: DELETE
 Headers:
   Authorization: Bearer [Token]

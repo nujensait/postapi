@@ -8,6 +8,6 @@ app.use(express.json()); // для парсинга JSON-параметров з
 app.use('/auth', authRoutes);
 app.use('/posts', postRoutes);
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(3005, () => {
+    console.log('Server is running on port 3005');
 });

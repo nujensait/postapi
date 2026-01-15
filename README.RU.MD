@@ -72,7 +72,7 @@ node .\db\database.js
 
 ```
 # auth
-URL: http://localhost:3000/auth/login
+URL: http://localhost:3005/auth/login
 Method: POST
 Headers: Content-Type: application/json
 Body (raw JSON):
@@ -82,7 +82,7 @@ Body (raw JSON):
 }
 
 # create post
-URL: http://localhost:3000/posts
+URL: http://localhost:3005/posts
 Method: POST
 Headers:
   Content-Type: application/json
@@ -94,12 +94,12 @@ Body (raw JSON):
 }
 
 # get posts
-URL: http://localhost:3000/posts
+URL: http://localhost:3005/posts
 Method: GET
 Headers: None
 
 # update post
-URL: http://localhost:3000/posts/1  // Замените '1' на ID поста, который вы хотите обновить
+URL: http://localhost:3005/posts/1  // Замените '1' на ID поста, который вы хотите обновить
 Method: PUT
 Headers:
   Content-Type: application/json
@@ -111,7 +111,7 @@ Body (raw JSON):
 }
 
 # delete post
-URL: http://localhost:3000/posts/1  // Замените '1' на ID поста, который вы хотите удалить
+URL: http://localhost:3005/posts/1  // Замените '1' на ID поста, который вы хотите удалить
 Method: DELETE
 Headers:
   Authorization: Bearer [Token]
