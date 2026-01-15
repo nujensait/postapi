@@ -52,10 +52,31 @@ public repository
 ----
 
 ## Setup
-```
-# setup libs
-npm install express sqlite3 bcryptjs jsonwebtoken
 
+### Option 1: Install using script (recommended)
+```bash
+# For Windows
+install-dependencies.bat
+
+# For Linux/Mac
+chmod +x install-dependencies.sh
+./install-dependencies.sh
+```
+
+### Option 2: Install manually
+```bash
+# install all dependencies from package.json
+npm install
+
+# or install manually (see dependencies.txt for versions)
+npm install express sqlite3 bcryptjs jsonwebtoken
+npm install --save-dev jest supertest nodemon
+```
+
+All required dependencies are listed in [dependencies.txt](dependencies.txt)
+
+### Run application
+```bash
 # run app
 npm run dev
 
@@ -63,7 +84,23 @@ npm run dev
 node .\db\database.js
 ```
 
-## Test
+## Automated Tests
+
+Run automated API tests:
+```bash
+# run all tests
+npm test
+
+# run tests in watch mode
+npm run test:watch
+
+# run tests with coverage report
+npm test -- --coverage
+```
+
+See [tests/README.md](tests/README.md) for more details about the test suite.
+
+## Manual Test
 
 Load (import) data from file: [postman.json](postman.json) 
 

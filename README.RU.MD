@@ -53,9 +53,31 @@
 ----
 
 ## Установка
-```
-npm install express sqlite3 bcryptjs jsonwebtoken
 
+### Вариант 1: Установка через скрипт (рекомендуется)
+```bash
+# Для Windows
+install-dependencies.bat
+
+# Для Linux/Mac
+chmod +x install-dependencies.sh
+./install-dependencies.sh
+```
+
+### Вариант 2: Установка вручную
+```bash
+# установить все зависимости из package.json
+npm install
+
+# или установить вручную (версии см. в dependencies.txt)
+npm install express sqlite3 bcryptjs jsonwebtoken
+npm install --save-dev jest supertest nodemon
+```
+
+Все необходимые зависимости перечислены в файле [dependencies.txt](dependencies.txt)
+
+### Запуск приложения
+```bash
 # run app
 npm run dev
 
@@ -64,7 +86,23 @@ node .\db\database.js
 
 ```
 
-## Проверка
+## Автоматизированные тесты
+
+Запуск автоматизированных тестов API:
+```bash
+# запустить все тесты
+npm test
+
+# запустить тесты в режиме наблюдения
+npm run test:watch
+
+# запустить тесты с отчетом о покрытии кода
+npm test -- --coverage
+```
+
+Подробнее о тестах см. [tests/README.md](tests/README.md).
+
+## Ручная проверка
 
 Загрузить (импортировать) данные из файла: [postman.json](postman.json)
 
