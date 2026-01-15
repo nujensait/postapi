@@ -9,16 +9,18 @@ const router = express.Router();
 // Создание нового поста
 //router.post('/', authMiddleware, (req, res) => {
 router.post('/', (req, res) => {        // @fixme skipped auth
-    try {
-        const { title, description, author } = req.body;
-        const post = new Post(title, description, author); // Использование 'new' для создания экземпляра
-        post.save((err, savedPost) => {
-            if (err) return res.status(400).send(err);
-            res.status(201).send(savedPost);
-        });
-    } catch (error) {
-        res.status(400).send(error);
+    const { title, description, author } = req.body;
+    
+    // Валидация обязательных полей
+    if (!title || !description) {
+        return res.status(400).send({ error: 'Title and description are required' });
     }
+    
+    const post = new Post(title, description, author); // Использование 'new' для создания экземпляра
+    post.save((err, savedPost) => {
+        if (err) return res.status(400).send(err);
+        res.status(201).send(savedPost);
+    });
 });
 
 // Получение всех постов
@@ -49,6 +51,11 @@ router.delete('/:id',  (req, res) => {      // @fixme skipped auth
 router.put('/:id',  (req, res) => {
     const { id } = req.params; // Получаем ID поста из параметров маршрута
     const { title, description } = req.body; // Получаем новые значения для заголовка и описания из тела запроса
+
+    // Валидация данных
+    if (!title && !description) {
+        return res.status(400).send({ error: 'Необходимо указать title или description для обновления' });
+    }
 
     Post.updateById(id, title, description, (err, result) => {
         if (err) {

@@ -4,27 +4,50 @@ const User = require('../models/User');
 
 const router = express.Router();
 
-router.post('/register', async (req, res) => {
-    try {
-        const user = new User(req.body);
-        await user.save();
-        res.status(201).send('User registered');
-    } catch (error) {
-        res.status(400).send(error);
-    }
+router.post('/register', (req, res) => {
+    const { username, password } = req.body;
+    
+    // Проверяем, существует ли пользователь
+    User.findByUsername(username, (err, existingUser) => {
+        if (err) {
+            return res.status(400).send(err);
+        }
+        
+        if (existingUser) {
+            return res.status(400).send('User already exists');
+        }
+        
+        // Создаем нового пользователя
+        const user = new User(username, password);
+        user.save((err, savedUser) => {
+            if (err) {
+                return res.status(400).send(err);
+            }
+            res.status(201).send('User registered');
+        });
+    });
 });
 
-router.post('/login', async (req, res) => {
-    try {
-        const user = await User.findOne({ username: req.body.username });
-        if (!user || !(await user.comparePassword(req.body.password))) {
+router.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    
+    User.findByUsername(username, (err, user) => {
+        if (err) {
+            return res.status(400).send(err);
+        }
+        
+        if (!user) {
             return res.status(401).send('Authentication failed');
         }
-        const token = jwt.sign({ userId: user._id }, 'secret_key', { expiresIn: '1d' });
+        
+        // Простая проверка пароля (без хеширования, как в модели)
+        if (user.password !== password) {
+            return res.status(401).send('Authentication failed');
+        }
+        
+        const token = jwt.sign({ userId: user.id }, 'secret_key', { expiresIn: '1d' });
         res.status(200).send({ token });
-    } catch (error) {
-        res.status(400).send(error);
-    }
+    });
 });
 
 module.exports = router;

@@ -19,9 +19,18 @@ class Post {
     save(callback) {
         const sql = `INSERT INTO posts (title, description, author)
                      VALUES (?, ?, ?)`;
-        db.run(sql, [this.title, this.description, this.author], function (err) {
+        const title = this.title;
+        const description = this.description;
+        const author = this.author;
+        
+        db.run(sql, [title, description, author], function (err) {
             if (err) return callback(err);
-            callback(null, {id: this.lastID, ...this});
+            callback(null, {
+                id: this.lastID,
+                title: title,
+                description: description,
+                author: author
+            });
         });
     }
 
