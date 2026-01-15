@@ -3,6 +3,23 @@
 
 ---
 
+## Table of Contents
+
+- [What is this?](#what-is-this)
+- [Task](#task)
+  - [Additional Terms](#additional-terms)
+  - [Result](#result)
+  - [Result evaluation (main criteria)](#result-evaluation-main-criteria)
+- [Setup](#setup)
+  - [Option 1: Install using script (recommended)](#option-1-install-using-script-recommended)
+  - [Option 2: Install manually](#option-2-install-manually)
+  - [Run application](#run-application)
+- [Automated Tests](#automated-tests)
+- [Manual Test](#manual-test)
+- [Todo](#todo)
+
+---
+
 ## What is this?
 Problem with hackathon "Express CRUD", dated 05/08/2024
 
