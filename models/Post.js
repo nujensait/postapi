@@ -50,6 +50,20 @@ class Post {
      * @param id
      * @param callback
      */
+    static findById(id, callback) {
+        const sql = `SELECT *
+                     FROM posts
+                     WHERE id = ?`;
+        db.get(sql, [id], (err, row) => {
+            if (err) return callback(err);
+            callback(null, row);
+        });
+    }
+
+    /**
+     * @param id
+     * @param callback
+     */
     static deleteById(id, callback) {
         const sql = 'DELETE FROM posts WHERE id = ?';
         db.run(sql, [id], function (err) {

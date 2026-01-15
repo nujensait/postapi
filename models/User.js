@@ -55,6 +55,20 @@ class User {
     }
 
     /**
+     * @param id
+     * @param callback
+     */
+    static findById(id, callback) {
+        const sql = `SELECT *
+                     FROM users
+                     WHERE id = ?`;
+        db.get(sql, [id], (err, row) => {
+            if (err) return callback(err);
+            callback(null, row);
+        });
+    }
+
+    /**
      * @param candidatePassword
      * @param hash
      * @param callback
