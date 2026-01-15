@@ -1,5 +1,9 @@
 const swaggerJsdoc = require('swagger-jsdoc');
 
+// Динамическое определение URL сервера из .env файла
+const API_URL = process.env.API_URL || 'http://localhost:3005';
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
 const options = {
     definition: {
         openapi: '3.0.0',
@@ -14,8 +18,8 @@ const options = {
         },
         servers: [
             {
-                url: 'http://localhost:3005',
-                description: 'Development server',
+                url: API_URL,
+                description: NODE_ENV === 'production' ? 'Production server' : 'Development server',
             },
         ],
         components: {

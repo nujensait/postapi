@@ -5,6 +5,7 @@ bcryptjs@2.4.3
 jsonwebtoken@9.0.0
 swagger-ui-express@5.0.0
 swagger-jsdoc@6.2.8
+dotenv@16.0.3
 
 # Development dependencies
 nodemon@2.0.22
