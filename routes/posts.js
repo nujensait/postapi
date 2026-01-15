@@ -70,26 +70,117 @@ router.post('/', authMiddleware, (req, res) => {
  * @swagger
  * /posts:
  *   get:
- *     summary: Получить все посты
- *     description: Возвращает список всех постов
+ *     summary: Получить список постов с пагинацией и фильтрацией
+ *     description: Возвращает список постов с поддержкой пагинации, фильтрации по автору и поиска
  *     tags: [Posts]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Номер страницы
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Количество постов на странице
+ *       - in: query
+ *         name: author
+ *         schema:
+ *           type: string
+ *         description: Фильтр по автору (username)
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: Поиск по title или description
  *     responses:
  *       200:
- *         description: Список постов
+ *         description: Список постов с метаданными
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Post'
+ *               type: object
+ *               properties:
+ *                 items:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Post'
+ *                 page:
+ *                   type: integer
+ *                   example: 1
+ *                 limit:
+ *                   type: integer
+ *                   example: 10
+ *                 total:
+ *                   type: integer
+ *                   example: 123
  *       500:
  *         description: Ошибка сервера
  */
-// Получение всех постов
+// Получение всех постов с пагинацией и фильтрацией
 router.get('/', (req, res) => {
-    Post.findAll((err, posts) => {
-        if (err) return res.status(500).send(err);
-        res.status(200).send(posts);
+    const { page, limit, author, search } = req.query;
+    
+    // Если есть параметры пагинации или фильтрации, используем findWithPagination
+    if (page || limit || author || search) {
+        Post.findWithPagination({ page, limit, author, search }, (err, result) => {
+            if (err) return res.status(500).send(err);
+            res.status(200).send(result);
+        });
+    } else {
+        // Иначе возвращаем все посты (для обратной совместимости)
+        Post.findAll((err, posts) => {
+            if (err) return res.status(500).send(err);
+            res.status(200).send(posts);
+        });
+    }
+});
+
+/**
+ * @swagger
+ * /posts/{id}:
+ *   get:
+ *     summary: Получить один пост по ID
+ *     description: Возвращает информацию об одном посте
+ *     tags: [Posts]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID поста
+ *     responses:
+ *       200:
+ *         description: Информация о посте
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Post'
+ *       404:
+ *         description: Пост не найден
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Ошибка сервера
+ */
+// Получение одного поста по ID
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    
+    Post.findById(id, (err, post) => {
+        if (err) {
+            return res.status(500).send({ error: 'Ошибка при поиске поста' });
+        }
+        if (!post) {
+            return res.status(404).send({ error: 'Пост не найден' });
+        }
+        res.status(200).send(post);
     });
 });
 

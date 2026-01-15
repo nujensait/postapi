@@ -91,6 +91,90 @@ class Post {
             }
         });
     }
+
+    /**
+     * @param options - { page, limit, author, search }
+     * @param callback
+     */
+    static findWithPagination(options, callback) {
+        const { page = 1, limit = 10, author, search } = options;
+        const offset = (page - 1) * limit;
+        
+        let sql = 'SELECT * FROM posts WHERE 1=1';
+        let countSql = 'SELECT COUNT(*) as total FROM posts WHERE 1=1';
+        const params = [];
+        const countParams = [];
+
+        // Фильтр по автору
+        if (author) {
+            sql += ' AND author = ?';
+            countSql += ' AND author = ?';
+            params.push(author);
+            countParams.push(author);
+        }
+
+        // Поиск по title или description
+        if (search) {
+            sql += ' AND (title LIKE ? OR description LIKE ?)';
+            countSql += ' AND (title LIKE ? OR description LIKE ?)';
+            const searchPattern = `%${search}%`;
+            params.push(searchPattern, searchPattern);
+            countParams.push(searchPattern, searchPattern);
+        }
+
+        sql += ' ORDER BY id DESC LIMIT ? OFFSET ?';
+        params.push(limit, offset);
+
+        // Получаем общее количество записей
+        db.get(countSql, countParams, (err, countRow) => {
+            if (err) return callback(err);
+
+            const total = countRow.total;
+
+            // Получаем записи с пагинацией
+            db.all(sql, params, (err, rows) => {
+                if (err) return callback(err);
+                
+                callback(null, {
+                    items: rows,
+                    page: parseInt(page),
+                    limit: parseInt(limit),
+                    total: total
+                });
+            });
+        });
+    }
+
+    /**
+     * @param author
+     * @param callback
+     */
+    static findByAuthor(author, callback) {
+        const sql = `SELECT *
+                     FROM posts
+                     WHERE author = ?
+                     ORDER BY id DESC`;
+        db.all(sql, [author], (err, rows) => {
+            if (err) return callback(err);
+            callback(null, rows);
+        });
+    }
+
+    /**
+     * @param searchText
+     * @param callback
+     */
+    static search(searchText, callback) {
+        const sql = `SELECT *
+                     FROM posts
+                     WHERE title LIKE ? OR description LIKE ?
+                     ORDER BY id DESC`;
+        const searchPattern = `%${searchText}%`;
+        db.all(sql, [searchPattern, searchPattern], (err, rows) => {
+            if (err) return callback(err);
+            callback(null, rows);
+        });
+    }
 }
 
 module.exports = Post;

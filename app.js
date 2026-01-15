@@ -4,6 +4,7 @@ const swaggerSpec = require('./swagger');
 const app = express();
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/posts');
+const userRoutes = require('./routes/users');
 
 app.use(express.json()); // для парсинга JSON-параметров запроса
 
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRoutes);
 app.use('/posts', postRoutes);
+app.use('/users', userRoutes);
 
 // Запуск сервера только если файл запущен напрямую (не при импорте для тестов)
 if (require.main === module) {

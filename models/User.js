@@ -79,6 +79,49 @@ class User {
             callback(null, isMatch);
         });
     }
+
+    /**
+     * @param callback
+     */
+    static findAll(callback) {
+        const sql = `SELECT *
+                     FROM users`;
+        db.all(sql, [], (err, rows) => {
+            if (err) return callback(err);
+            callback(null, rows);
+        });
+    }
+
+    /**
+     * @param id
+     * @param updates - { username }
+     * @param callback
+     */
+    static updateById(id, updates, callback) {
+        const { username } = updates;
+        const sql = 'UPDATE users SET username = ? WHERE id = ?';
+        db.run(sql, [username, id], function (err) {
+            if (err) {
+                return callback(err);
+            }
+            callback(null, { updatedRows: this.changes });
+        });
+    }
+
+    /**
+     * @param id
+     * @param newPassword
+     * @param callback
+     */
+    static updatePassword(id, newPassword, callback) {
+        const sql = 'UPDATE users SET password = ? WHERE id = ?';
+        db.run(sql, [newPassword, id], function (err) {
+            if (err) {
+                return callback(err);
+            }
+            callback(null, { updatedRows: this.changes });
+        });
+    }
 }
 
 module.exports = User;

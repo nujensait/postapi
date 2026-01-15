@@ -88,6 +88,16 @@
 		{
 			"name": "Create Post",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc2ODQ4MDI3OCwiZXhwIjoxNzY4NTY2Njc4fQ.ec-5L6Uon1hGKruUQdUJFUdjLg0dg5krt3F04nv1rSg",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -118,7 +128,7 @@
 			"response": []
 		},
 		{
-			"name": "get posts",
+			"name": "Get posts",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -190,6 +200,40 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc2ODQ4MDgzNywiZXhwIjoxNzY4NTY3MjM3fQ.V6E5R1VhI3QyiSBX-D6iFJRkUCpUAq2PeQo65-a9hhU",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
