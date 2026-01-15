@@ -1,5 +1,6 @@
 ( [README IN RUSSIAN](README.MD) )
 ( [TESTS](tests/README.md) )
+( [PRODUCTION](PRODUCTION.MD) )
 
 ---
 
@@ -97,12 +98,70 @@ npm install --save-dev jest supertest nodemon
 All required dependencies are listed in [dependencies.txt](dependencies.txt)
 
 ### Run application
+
+**Using Makefile (recommended):**
 ```bash
-# run app
+# Show all available commands
+make help
+
+# Install dependencies
+make install
+
+# Run in development mode
+make dev
+
+# Run in background (nohup)
+make nohup-start
+
+# Run in screen
+make screen-start
+
+# Initialize database
+make db-init
+
+# Run tests
+make test
+```
+
+**Development mode:**
+```bash
+# run app with nodemon (auto-reload)
 npm run dev
+# or
+make dev
 
 # run migrations
 node .\db\database.js
+# or
+make db-init
+```
+
+**Production mode (background):**
+```bash
+# Run in background with nohup
+make nohup-start
+
+# Stop
+make nohup-stop
+
+# View logs
+make logs
+
+# Run in screen (recommended)
+make screen-start
+
+# Attach to screen session
+make screen-attach
+
+# Stop screen
+make prod-stop
+
+# Application status
+make status
+```
+
+Detailed production deployment guide: [PRODUCTION.MD](PRODUCTION.MD)
+
 ```
 
 ## API Reference

@@ -1,6 +1,7 @@
 
 ( [README НА АНГЛИЙСКОМ](README.ENG.MD) )
 ( [ТЕСТЫ](tests/README.md) )
+( [ПРОДАКШЕН](PRODUCTION.MD) )
 
 ---
 
@@ -99,12 +100,69 @@ npm install --save-dev jest supertest nodemon
 Все необходимые зависимости перечислены в файле [dependencies.txt](dependencies.txt)
 
 ### Запуск приложения
+
+**Использование Makefile (рекомендуется):**
 ```bash
-# run app
+# Показать все доступные команды
+make help
+
+# Установить зависимости
+make install
+
+# Запустить в режиме разработки
+make dev
+
+# Запустить в фоне (nohup)
+make nohup-start
+
+# Запустить в screen
+make screen-start
+
+# Инициализировать базу данных
+make db-init
+
+# Запустить тесты
+make test
+```
+
+**Режим разработки:**
+```bash
+# run app with nodemon (auto-reload)
 npm run dev
+# или
+make dev
 
 # run migrations
 node .\db\database.js
+# или
+make db-init
+```
+
+**Режим продакшена (фоновый запуск):**
+```bash
+# Запуск в фоне с nohup
+make nohup-start
+
+# Остановка
+make nohup-stop
+
+# Просмотр логов
+make logs
+
+# Запуск в screen (рекомендуется)
+make screen-start
+
+# Подключиться к screen сессии
+make screen-attach
+
+# Остановка screen
+make prod-stop
+
+# Статус приложения
+make status
+```
+
+Подробная документация по запуску на продакшене: [PRODUCTION.MD](PRODUCTION.MD)
 
 ```
 

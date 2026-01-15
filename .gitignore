@@ -2,3 +2,6 @@ node_modules
 .idea
 package-lock.json
 coverage
+logs
+*.log
+data.db

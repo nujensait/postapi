@@ -4,12 +4,18 @@
   "description": "A CRUD API for managing posts with user authentication using SQLite.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
     "test": "jest --verbose --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop crud-api",
+    "pm2:restart": "pm2 restart crud-api",
+    "pm2:delete": "pm2 delete crud-api",
+    "pm2:logs": "pm2 logs crud-api",
+    "pm2:monit": "pm2 monit"
   },
-  "author": "Your Name",
+  "author": "Mikhail Ikonnikov",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
