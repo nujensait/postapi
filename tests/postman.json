@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "5d9e36a1-3a31-4b1d-9fa3-7a0efb215aeb",
-		"name": "Node.js CRUD API",
+		"name": "jsfs_postapi | Node.js CRUD API",
 		"description": "This collection covers basic operations of the CRUD API for posts with user authentication.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "1910544",
@@ -14,12 +14,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/",
+					"raw": "http://localhost:3005/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3005",
 					"path": [
 						""
 					]
@@ -42,12 +42,12 @@
 					"raw": "{\n  \"username\": \"newuser\",\n  \"password\": \"password123\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/auth/register",
+					"raw": "http://localhost:3005/auth/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3005",
 					"path": [
 						"auth",
 						"register"
@@ -71,12 +71,12 @@
 					"raw": "{\n  \"username\": \"newuser\",\n  \"password\": \"password123\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/auth/login",
+					"raw": "http://localhost:3005/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3005",
 					"path": [
 						"auth",
 						"login"
@@ -104,12 +104,12 @@
 					"raw": "{\n  \"title\": \"New Post Title22\",\n  \"description\": \"Description of the new post.\",\n  \"author\": 1\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/posts",
+					"raw": "http://localhost:3005/posts",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3005",
 					"path": [
 						"posts"
 					]
@@ -121,7 +121,18 @@
 			"name": "get posts",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3005/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3005",
+					"path": [
+						"posts"
+					]
+				}
 			},
 			"response": []
 		},
@@ -137,12 +148,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/posts/1",
+					"raw": "http://localhost:3005/posts/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3005",
 					"path": [
 						"posts",
 						"1"
@@ -166,15 +177,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/posts/1",
+					"raw": "http://localhost:3005/posts/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "3005",
 					"path": [
 						"posts",
-						"1"
+						"2"
 					]
 				}
 			},

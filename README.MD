@@ -18,7 +18,7 @@
 - [Справка по API](#справка-по-api)
 - [Автоматизированные тесты](#автоматизированные-тесты)
 - [Ручная проверка](#ручная-проверка)
-- [Нужны доработки](#нужны-доработки)
+- [Контакты](#контакты)
 
 ---
 
@@ -110,18 +110,27 @@ node .\db\database.js
 
 ## Справка по API
 
-Для получения справки по доступным API методам откройте в браузере или выполните GET запрос:
+### Swagger UI (интерактивная документация)
+
+Для доступа к полной интерактивной документации API откройте в браузере:
 
 ```
-GET http://localhost:3005/
+http://localhost:3005/
 ```
 
-Ответ будет содержать:
-- Приветственное сообщение
-- Версию API
-- Список всех доступных endpoints с описанием
-- Информацию о требованиях к авторизации
-- Примеры использования
+или напрямую:
+
+```
+http://localhost:3005/api-docs
+```
+
+Swagger UI предоставляет:
+- Полное описание всех endpoints
+- Интерактивное тестирование API прямо в браузере
+- Схемы данных и примеры запросов/ответов
+- Возможность авторизации и выполнения запросов
+
+**Примечание:** Корневой адрес `/` автоматически перенаправляет на `/api-docs`
 
 ## Автоматизированные тесты
 
@@ -141,57 +150,8 @@ npm test -- --coverage
 
 ## Ручная проверка
 
-Загрузить (импортировать) данные из файла: [postman.json](postman.json)
+Загрузить (импортировать) данные из файла: [tests/postman.json](tests/postman.json)
 
-Или запустите отдельные запросы Postman:
+## Контакты
 
-```
-# auth
-URL: http://localhost:3005/auth/login
-Method: POST
-Headers: Content-Type: application/json
-Body (raw JSON):
-{
-  "username": "newuser",
-  "password": "password123"
-}
-
-# create post
-URL: http://localhost:3005/posts
-Method: POST
-Headers:
-  Content-Type: application/json
-  Authorization: Bearer [Token]  // Замените [Token] на токен, полученный при аутентификации
-Body (raw JSON):
-{
-  "title": "New Post Title",
-  "description": "Description of the new post."
-}
-
-# get posts
-URL: http://localhost:3005/posts
-Method: GET
-Headers: None
-
-# update post
-URL: http://localhost:3005/posts/1  // Замените '1' на ID поста, который вы хотите обновить
-Method: PUT
-Headers:
-  Content-Type: application/json
-  Authorization: Bearer [Token]
-Body (raw JSON):
-{
-  "title": "Updated Post Title",
-  "description": "Updated description of the post."
-}
-
-# delete post
-URL: http://localhost:3005/posts/1  // Замените '1' на ID поста, который вы хотите удалить
-Method: DELETE
-Headers:
-  Authorization: Bearer [Token]
-```
-
-## Нужны доработки 
-- использовать authMiddleware для операций CRUD сообщений (теперь аутентификация здесь пропускается)
-- исправлена ошибка при регистрации/авторизации (сейчас не работает)
+Mikhail Ikonnikov <mishaikon@gmail.com>

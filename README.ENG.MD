@@ -17,7 +17,7 @@
 - [API Reference](#api-reference)
 - [Automated Tests](#automated-tests)
 - [Manual Test](#manual-test)
-- [Todo](#todo)
+- [Contacts](#contacts)
 
 ---
 
@@ -107,18 +107,27 @@ node .\db\database.js
 
 ## API Reference
 
-To get API reference and available methods, open in browser or make GET request:
+### Swagger UI (Interactive Documentation)
+
+To access full interactive API documentation, open in browser:
 
 ```
-GET http://localhost:3005/
+http://localhost:3005/
 ```
 
-Response will contain:
-- Welcome message
-- API version
-- List of all available endpoints with descriptions
-- Authorization requirements
-- Usage examples
+or directly:
+
+```
+http://localhost:3005/api-docs
+```
+
+Swagger UI provides:
+- Complete description of all endpoints
+- Interactive API testing directly in browser
+- Data schemas and request/response examples
+- Authorization and request execution capabilities
+
+**Note:** Root path `/` automatically redirects to `/api-docs`
 
 ## Automated Tests
 
@@ -138,56 +147,8 @@ See [tests/README.md](tests/README.md) for more details about the test suite.
 
 ## Manual Test
 
-Load (import) data from file: [postman.json](postman.json) 
+Load (import) data from file: [tests/postman.json](tests/postman.json) 
 
-Or run separate postman queries:
-```
-# auth
-URL: http://localhost:3005/auth/login
-Method: POST
-Headers: Content-Type: application/json
-Body (raw JSON):
-{
-  "username": "newuser",
-  "password": "password123"
-}
+## Contacts
 
-# create post
-URL: http://localhost:3005/posts
-Method: POST
-Headers:
-  Content-Type: application/json
-  Authorization: Bearer [Token]  // Replace [Token] with the token received during authentication
-Body (raw JSON):
-{
-  "title": "New Post Title",
-  "description": "Description of the new post."
-}
-
-# get posts
-URL: http://localhost:3005/posts
-Method: GET
-Headers: None
-
-# update post
-URL: http://localhost:3005/posts/1  // Replace '1' with the ID of the post you want to update
-Method: PUT
-Headers:
-  Content-Type: application/json
-  Authorization: Bearer [Token]
-Body (raw JSON):
-{
-  "title": "Updated Post Title",
-  "description": "Updated description of the post."
-}
-
-# delete post
-URL: http://localhost:3005/posts/1  // Replace '1' with the ID of the post you want to delete
-Method: DELETE
-Headers:
-  Authorization: Bearer [Token]
-```
-
-## Todo
-- use authMiddleware on posts CRUD operations (now auth is skipped here)
-- fix error on registration/auth - not working now
+Mikhail Ikonnikov <mishaikon@gmail.com>
