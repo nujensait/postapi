@@ -48,7 +48,7 @@ router.post('/register', (req, res) => {
         
         // Создаем нового пользователя
         const user = new User(username, password);
-        user.save((err, savedUser) => {
+        user.save((err) => {
             if (err) {
                 return res.status(400).send(err);
             }

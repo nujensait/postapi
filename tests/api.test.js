@@ -63,7 +63,7 @@ describe('API Tests', () => {
         });
 
         test('POST /auth/register - должен вернуть ошибку при дублировании пользователя', async () => {
-            const response = await request(app)
+            await request(app)
                 .post('/auth/register')
                 .send(testUser)
                 .expect(400);
@@ -111,7 +111,7 @@ describe('API Tests', () => {
         });
 
         test('POST /auth/login - должен вернуть ошибку при несуществующем пользователе', async () => {
-            const response = await request(app)
+            await request(app)
                 .post('/auth/login')
                 .send({
                     username: 'nonexistentuser',
@@ -128,7 +128,7 @@ describe('API Tests', () => {
         };
 
         test('POST /posts - должен вернуть ошибку без авторизации', async () => {
-            const response = await request(app)
+            await request(app)
                 .post('/posts')
                 .send(testPost)
                 .expect(401);
@@ -150,7 +150,7 @@ describe('API Tests', () => {
         });
 
         test('POST /posts - должен вернуть ошибку при отсутствии обязательных полей', async () => {
-            const response = await request(app)
+            await request(app)
                 .post('/posts')
                 .set('Authorization', `Bearer ${authToken}`)
                 .send({
@@ -176,7 +176,7 @@ describe('API Tests', () => {
         });
 
         test('PUT /posts/:id - должен вернуть ошибку без авторизации', async () => {
-            const response = await request(app)
+            await request(app)
                 .put(`/posts/${testPostId}`)
                 .send({
                     title: 'Updated Title'
@@ -229,7 +229,7 @@ describe('API Tests', () => {
         });
 
         test('PUT /posts/:id - должен вернуть ошибку при отсутствии данных для обновления', async () => {
-            const response = await request(app)
+            await request(app)
                 .put(`/posts/${testPostId}`)
                 .set('Authorization', `Bearer ${authToken}`)
                 .send({})
@@ -237,7 +237,7 @@ describe('API Tests', () => {
         });
 
         test('DELETE /posts/:id - должен вернуть ошибку без авторизации', async () => {
-            const response = await request(app)
+            await request(app)
                 .delete(`/posts/${testPostId}`)
                 .expect(401);
         });
@@ -327,7 +327,7 @@ describe('API Tests', () => {
             expect(deleteResponse.body.message).toBe('Пост успешно удален');
 
             // 5. Проверка, что пост удален
-            const verifyDeleteResponse = await request(app)
+            await request(app)
                 .delete(`/posts/${postId}`)
                 .set('Authorization', `Bearer ${authToken}`)
                 .expect(404);
