@@ -14,6 +14,7 @@
   - [Option 1: Install using script (recommended)](#option-1-install-using-script-recommended)
   - [Option 2: Install manually](#option-2-install-manually)
   - [Run application](#run-application)
+- [API Reference](#api-reference)
 - [Automated Tests](#automated-tests)
 - [Manual Test](#manual-test)
 - [Todo](#todo)
@@ -103,6 +104,21 @@ npm run dev
 # run migrations
 node .\db\database.js
 ```
+
+## API Reference
+
+To get API reference and available methods, open in browser or make GET request:
+
+```
+GET http://localhost:3005/
+```
+
+Response will contain:
+- Welcome message
+- API version
+- List of all available endpoints with descriptions
+- Authorization requirements
+- Usage examples
 
 ## Automated Tests
 

@@ -21,6 +21,23 @@ describe('API Tests', () => {
         done();
     });
 
+    describe('Root API', () => {
+        test('GET / - должен вернуть приветствие и справку по API', async () => {
+            const response = await request(app)
+                .get('/')
+                .expect('Content-Type', /json/)
+                .expect(200);
+
+            expect(response.body).toHaveProperty('message');
+            expect(response.body).toHaveProperty('version');
+            expect(response.body).toHaveProperty('endpoints');
+            expect(response.body.endpoints).toHaveProperty('auth');
+            expect(response.body.endpoints).toHaveProperty('posts');
+            expect(response.body).toHaveProperty('server');
+            expect(response.body.server.port).toBe(3005);
+        });
+    });
+
     describe('Auth API', () => {
         test('POST /auth/register - должен зарегистрировать нового пользователя', async () => {
             testUser = {
